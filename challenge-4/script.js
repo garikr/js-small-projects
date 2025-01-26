@@ -36,11 +36,11 @@ btn.addEventListener('click', function () {
     .split('\n')
     .map(line => line.trim());
 
-  const converted = text.map(word => {
+  const converted = text.map((word, index) => {
     const [first, second] = word.split('_');
     const camelCase = `${first}${second[0].toUpperCase()}${second.slice(1)}`;
 
-    return camelCase;
+    return `${camelCase.padEnd(20)}${'✅'.repeat(index + 1)}`;
   });
 
   converted.forEach(el => console.log(el));
