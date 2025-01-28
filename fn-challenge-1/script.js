@@ -33,4 +33,23 @@ const poll = {
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
   answers: new Array(4).fill(0),
+
+  registerNewAnswer() {
+    // Get the answer
+    let answer = Number(prompt(`${this.question}\n${this.options.join('\n')}`));
+    // Check the answer
+    if (answer >= 0 && answer <= 3) this.answers[answer]++;
+    else console.log('Sorry, you should enter from 0 to 3');
+
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') console.log(this.answers);
+    if (type === 'string')
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+  },
 };
+
+const pollBtn = document.querySelector('.poll');
+
+pollBtn.addEventListener('click', poll.registerNewAnswer.bind(poll));
